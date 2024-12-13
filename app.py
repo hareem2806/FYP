@@ -6,12 +6,12 @@ import requests
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import FAISS
-from langchain_community.llms import Ollama
+from langchain.vectorstores import FAISS
+from langchain.llms import HuggingFaceHub
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 import nltk
 from urllib.parse import urljoin, urlparse
 
@@ -46,13 +46,11 @@ def scrape_website(url):
         visited_urls.add(url)
 
         try:
-          headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.5',
-    'Connection': 'keep-alive',
-}
-          response = requests.get(url, headers=headers)
+            headers = {
+                'User-Agent': 'Mozilla/5.0',
+                'Accept': 'text/html',
+            }
+            response = requests.get(url, headers=headers)
 
         except requests.RequestException as e:
             st.error(f"Failed to retrieve {url}: {e}")
@@ -111,7 +109,7 @@ def get_conversational_chain():
 
     Answer:
     """
-    model = Ollama(model="llama3.2")  # Initialize LLaMA model
+    model = HuggingFaceHub(repo_id="microsoft/DialoGPT-medium", model_kwargs={"temperature": 0.7})
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
 
@@ -128,7 +126,7 @@ def user_input(user_question):
 # Main Function for Streamlit App
 def main():
     st.set_page_config("Chat PDF & URL", layout="wide")
-    st.header("Chat with PDF or URL using Ollama 💁")
+    st.header("Chat with PDF or URL using HuggingFace 💁")
 
     user_question = st.text_input("Ask a Question from the Processed Data")
 
