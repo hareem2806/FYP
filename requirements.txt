@@ -8,5 +8,5 @@ nltk==3.8.1
 faiss-cpu
 python-dotenv
 torch
-transformer
+transformers
 langchain
