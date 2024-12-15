@@ -1,0 +1,80 @@
+/* Style for the login page */
+.bgImg {
+  background-image: url('./logo.png'); /* Replace with your background image */
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.container {
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  width: 400px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.ui.form .field {
+  margin-bottom: 15px;
+}
+
+.ui.form .field label {
+  font-weight: bold;
+}
+
+.ui.form .field input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.text {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.text span {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.text span:hover {
+  text-decoration: underline;
+}
+
+.ui.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
